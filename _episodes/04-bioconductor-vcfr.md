@@ -62,7 +62,7 @@ BiocManager::install("vcfR")
 {: .language-r}
 You may need to also allow it to install some dependencies or update installed packages in order to successfully complete the process.
 
-> ## Note: Installing packages from Bioconductor vs from CRAN 
+> ## Note: Installing packages from Bioconductor vs from CRAN
 > Some packages begin by being available only on Bioconductor, and then later
 > move to CRAN. `vcfR` is one such package, which originally was only available
 > from Bioconductor, but is currently available from CRAN. The other thing to
@@ -83,9 +83,9 @@ You may need to also allow it to install some dependencies or update installed p
 
 While we are only focusing in this workshop on VCF analyses, there are hundreds or thousands of different types of data and analyses that bioinformaticians may want to work with. Sometimes you may get a new dataset and not know exactly where to start with analyzing or visualizing it. The Bioconductor package search view can be a great way to browse through the packages that are available.
 
-![screenshot of bioconductor search](../fig/bioconductor_search.jpg)
+![screenshot of bioconductor search](./fig/bioconductor_search.jpg)
 
-<img src="../fig/bioconductor_search.jpg" alt="screenshot of bioconductor search="width:1000px;"/>
+<img src="./fig/bioconductor_search.jpg" alt="screenshot of bioconductor search="width:1000px;"/>
 
 > ## Tip: Searching for packages on the Bioconductor website
 >
@@ -109,7 +109,7 @@ vcf files in R.
 >
 > - Install the `BiocManager` package
 > - Use that package's `install()` function to install `vcfR`
-> - Browse the Bioconductor website to find a second package, and install it 
+> - Browse the Bioconductor website to find a second package, and install it
 {: .challenge}
 
 ## Resources
