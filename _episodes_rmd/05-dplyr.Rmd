@@ -26,10 +26,14 @@ source("../bin/chunk-options.R")
 knitr_fig_path("05-")
 ```
 
-```{r, include = FALSE, echo = FALSE, eval = TRUE, purl = FALSE}
-## silently read in CSV file from data folder
+```{r, include = TRUE, echo = TRUE, eval = TRUE, purl = FALSE}
+# load library
+
 library(tidyverse)
+
+# read data
 variants <- read_csv("../data/combined_tidy_vcf.csv")
+str(varients
 ```
 
 Bracket subsetting is handy, but it can be cumbersome and difficult to read, especially for complicated operations.
@@ -56,17 +60,6 @@ stuff in R. The functions we've been using, like `str()`, come built into R;
 packages give you access to more functions. You need to install a package and
 then load it to be able to use it.
 
-```{r, eval = FALSE, purl = FALSE}
-install.packages("dplyr") ## install
-```
-
-You might get asked to choose a CRAN mirror -- this is asking you to
-choose a site to download the package from. The choice doesn't matter too much; I'd recommend choosing the RStudio mirror.
-
-```{r, message = FALSE, purl = FALSE}
-library("dplyr")          ## load
-```
-
 You only need to install a package once per computer, but you need to load it
 every time you open a new R session and want to use that package.
 
@@ -92,7 +85,7 @@ back just what you need for analysis in R.
 
 Similar to `str()`, which comes built into R, `glimpse()` is a `dplyr` function that (as the name suggests) gives a glimpse of the data frame.
 
-```{r, echo = FALSE, eval = TRUE, purl = FALSE}
+```{r, echo = TRUE, eval = TRUE, purl = FALSE}
 glimpse(variants)
 ```
 
