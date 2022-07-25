@@ -33,7 +33,7 @@ library(tidyverse)
 
 # read data
 variants <- read_csv("../data/combined_tidy_vcf.csv")
-str(varients)
+str(variants)
 ```
 
 Bracket subsetting is handy, but it can be cumbersome and difficult to read, especially for complicated operations.
