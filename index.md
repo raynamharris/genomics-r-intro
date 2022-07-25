@@ -55,3 +55,13 @@ exercises in class, re-do them on your own, and then work on your own problems.
 >   Genomics Data Carpentry instance as described on the
 >   [Genomics Workshop setup page](http://www.datacarpentry.org/genomics-workshop/setup.html)
 {: .prereq}
+
+
+> ## Useful Links
+>
+> * [Talk: RNA-Seq a Five Course Meal](https://speakerdeck.com/raynamharris/rnaseq-a-five-course-meal)
+> * [R for Data Science Book](https://r4ds.had.co.nz/)
+> * [R for Data Science Code](https://github.com/hadley/r4ds/)
+> * [Bioconductor Home](https://www.bioconductor.org/)
+> * [Bioconductor Package Search](https://www.bioconductor.org/packages/release/BiocViews.html#___Software)
+{: .callout}
