@@ -1039,27 +1039,58 @@ variants %>%
 
 It can sometimes be useful to transform the "long" tidy format, into the wide format. This transformation can be done with the `pivot_wider()` function provided by the `tidyr` package (also part of the `tidyverse`).
 
-`pivot_wider()` takes a data frame as the first argument, and two arguments: the column name that will become the columns  and the column name that will become the cells in the wide data.
+
+~~~
+#install.packages("tidyr")
+library(tidyr)
+~~~
+{: .language-r}
+
+Let's first make a smaller data frame that we can pivot.
 
 
 ~~~
-variants_wide <- variants %>%
+variants_sum <- variants %>%
   group_by(sample_id, CHROM) %>%
-  summarize(mean_DP = mean(DP)) %>%
-  pivot_wider(names_from = sample_id, values_from = mean_DP)
+  summarize(mean_DP = mean(DP)) 
 ~~~
 {: .language-r}
 
 
 
 ~~~
-Error in pivot_wider(., names_from = sample_id, values_from = mean_DP): could not find function "pivot_wider"
+`summarise()` has grouped output by 'sample_id'. You can override using the
+`.groups` argument.
 ~~~
-{: .error}
+{: .output}
 
 
 
 ~~~
+variants_sum
+~~~
+{: .language-r}
+
+
+
+~~~
+# A tibble: 3 × 3
+# Groups:   sample_id [3]
+  sample_id  CHROM      mean_DP
+  <chr>      <chr>        <dbl>
+1 SRR2584863 CP000819.1    10.4
+2 SRR2584866 CP000819.1    10.6
+3 SRR2589044 CP000819.1     9.3
+~~~
+{: .output}
+
+
+`pivot_wider()` takes a data frame as the first argument, and two arguments: the column name that will become the columns  and the column name that will become the cells in the wide data.
+
+
+~~~
+variants_wide <- variants_sum %>%
+  pivot_wider(names_from = sample_id, values_from = mean_DP)
 variants_wide
 ~~~
 {: .language-r}
@@ -1067,9 +1098,12 @@ variants_wide
 
 
 ~~~
-Error in eval(expr, envir, enclos): object 'variants_wide' not found
+# A tibble: 1 × 4
+  CHROM      SRR2584863 SRR2584866 SRR2589044
+  <chr>           <dbl>      <dbl>      <dbl>
+1 CP000819.1       10.4       10.6        9.3
 ~~~
-{: .error}
+{: .output}
 
 The opposite operation of `pivot_wider()` is taken care by `pivot_longer()`. We specify the names of the new columns, and here add `-CHROM` as this column shouldn't be affected by the reshaping:
 
@@ -1083,9 +1117,14 @@ variants_wide %>%
 
 
 ~~~
-Error in pivot_longer(., -CHROM, names_to = "sample_id", values_to = "mean_DP"): could not find function "pivot_longer"
+# A tibble: 3 × 3
+  CHROM      sample_id  mean_DP
+  <chr>      <chr>        <dbl>
+1 CP000819.1 SRR2584863    10.4
+2 CP000819.1 SRR2584866    10.6
+3 CP000819.1 SRR2589044     9.3
 ~~~
-{: .error}
+{: .output}
 
 ## Resources
 
