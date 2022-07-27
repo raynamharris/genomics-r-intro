@@ -66,4 +66,5 @@ exercises in class, re-do them on your own, and then work on your own problems.
 > * [Bioconductor Package Search](https://www.bioconductor.org/packages/release/BiocViews.html#___Software)
 {: .callout}
 
-If you don't have R installed, you can click this [![Binder](http://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/raynamharris/tutorials/master?urlpath=rstudio) button to start RStudio in a browser window.
+[![Binder](http://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/raynamharris/tutorials/master?urlpath=rstudio)
+If you don't have R installed, you can click the launch binder button to start RStudio in a browser window.

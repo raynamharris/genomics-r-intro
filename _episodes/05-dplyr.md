@@ -39,6 +39,11 @@ Install the complete tidyverse or the packges separately. This lesson focuses on
 
 ## readr 
 
+<center>
+<img src="https://d33wubrfki0l68.cloudfront.net/c1c91484f898fe9d7d90a570900f1d5cd703fe2e/d7df4/css/images/hex/readr.png"/>
+</center>
+
+
 Before we begin this lesson, be sure you have read the variant data. To help with formatting, I'm going to use the `read_csv()` function from the [readr](https://readr.tidyverse.org/) instead of intead of `read.csv()` from `base`. The `readr` packages imports data frames as **tibbles** instead of **dataframes**. 
 
 
@@ -71,6 +76,10 @@ head(variants)
 {: .output}
 
 ## dplyr
+
+<center>
+<img src="https://d33wubrfki0l68.cloudfront.net/621a9c8c5d7b47c4b6d72e8f01f28d14310e8370/193fc/css/images/hex/dplyr.png"/>
+</center>
 
 Bracket subsetting is handy, but it can be cumbersome and difficult to read, especially for complicated operations.
 
@@ -1046,6 +1055,11 @@ variants %>%
 {: .output}
 
 ## tidyr
+
+<center>
+<img src="https://d33wubrfki0l68.cloudfront.net/476fa4025501dcec05be08248b32d390dd2337d5/574c6/css/images/hex/tidyr.png"/>
+</center>
+
 
 It can sometimes be useful to transform the "long" tidy format, into the wide format. This transformation can be done with the `pivot_wider()` function provided by the [tidyr](https://tidyr.tidyverse.org/) package (also part of the `tidyverse`).
 
