@@ -122,6 +122,7 @@ vcf files in R.
 >> 3. Bioconductor
 >> 4. Bioconductor
 >> 5. Bioconductor
+> {: .solution}
 {: .challenge}
 
 ## Resources
