@@ -25,7 +25,7 @@ source: Rmd
 
 
 
-The [Tidyverse](https://www.tidyverse.org/) is an collection of R packages that share an underlying design philosophy, grammar, and data structures.
+The [Tidyverse](https://www.tidyverse.org/) is an collection of R packages that share an underlying design philosophy, grammar, and data structures. The `tidyverse` package includes `dplyr`, `ggplot2`, `tibble`, `tidyr`, `readr`, `purrr`, `stringr`, and `forcats`). 
 
 Install the complete tidyverse or the packges separately. This lesson focuses on `readr` for reading files, `dplyr` for data manipulation,  and `tidyr` for data organization.
 
@@ -111,8 +111,8 @@ You only need to install a package once per computer, but you need to load it
 every time you open a new R session and want to use that package.
 
 The package `dplyr` is a fairly new (2014) package that tries to provide easy
-tools for the most common data manipulation tasks. This package is also included in the [`tidyverse` package](https://www.tidyverse.org/), which is a collection of eight different packages (`dplyr`, `ggplot2`, `tibble`, `tidyr`, `readr`, `purrr`, `stringr`, and `forcats`). It is built to work directly
-with data frames. The thinking behind it was largely inspired by the package
+tools for the most common data manipulation tasks. 
+The thinking behind it was largely inspired by the package
 `plyr` which has been in use for some time but suffered from being slow in some
 cases.` dplyr` addresses this by porting much of the computation to C++. An
 additional feature is the ability to work with data stored directly in an
