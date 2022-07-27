@@ -6,8 +6,8 @@ teaching: 40
 exercises: 15
 questions: How can I manipulate data frames without repeating myself?
 objectives:
-- Describe what the `dplyr` package in R is used for.
-- Apply common `dplyr` functions to manipulate data in R.
+- Describe what the `readr` package in R is used for.
+- Apply common `dplyr` and `tidyr` functions to manipulate data in R.
 - Employ the ‘pipe’ operator to link together a sequence of functions.
 - Employ the ‘mutate’ function to apply other chosen functions to existing columns
   and create new columns of data.
@@ -25,9 +25,21 @@ source: Rmd
 
 
 
-## Setup
+The [Tidyverse](https://www.tidyverse.org/) is an collection of R packages that share an underlying design philosophy, grammar, and data structures.
 
-Before we begin this lesson, be sure you have read the variant data. To help with formatting, I'm going to use the `read_csv()` function from `readr` insteead of intead of `read.csv()` from `base`. The `readr` packages imports data frames as **tibbles** instead of **dataframes**. 
+Install the complete tidyverse or the packges separately. This lesson focuses on `readr` for reading files, `dplyr` for data manipulation,  and `tidyr` for data organization.
+
+
+
+~~~
+#install.packages("tidyverse")
+#install.packages( "dplyr", "readr", "tidyr", "ggplot2", "purrr", "tibble", "forcat")
+~~~
+{: .language-r}
+
+## readr 
+
+Before we begin this lesson, be sure you have read the variant data. To help with formatting, I'm going to use the `read_csv()` function from the [readr](https://readr.tidyverse.org/) instead of intead of `read.csv()` from `base`. The `readr` packages imports data frames as **tibbles** instead of **dataframes**. 
 
 
 ~~~
@@ -58,11 +70,11 @@ head(variants)
 ~~~
 {: .output}
 
-## Why dplyr?
+## dplyr
 
 Bracket subsetting is handy, but it can be cumbersome and difficult to read, especially for complicated operations.
 
-Luckily, the [`dplyr`](https://cran.r-project.org/package=dplyr)
+Luckily, the [`dplyr`]([https://cran.r-project.org/package=dplyr](https://dplyr.tidyverse.org/))
 package provides a number of very useful functions for manipulating data frames
 in a way that will reduce repetition, reduce the probability of making
 errors, and probably even save you some typing. As an added bonus, you might
@@ -77,7 +89,7 @@ pipes (`%>%`) to combine them:
 4. `group_by()`
 5. `summarize()`
 6. `mutate()`
-7. `pivot_longer` and `pivot_wider`
+
 
 Packages in R are sets of additional functions that let you do more
 stuff in R. The functions we've been using, like `str()`, come built into R;
@@ -86,8 +98,6 @@ then load it to be able to use it.
 
 You only need to install a package once per computer, but you need to load it
 every time you open a new R session and want to use that package.
-
-## What is dplyr?
 
 The package `dplyr` is a fairly new (2014) package that tries to provide easy
 tools for the most common data manipulation tasks. This package is also included in the [`tidyverse` package](https://www.tidyverse.org/), which is a collection of eight different packages (`dplyr`, `ggplot2`, `tibble`, `tidyr`, `readr`, `purrr`, `stringr`, and `forcats`). It is built to work directly
@@ -141,7 +151,7 @@ The following objects are masked from 'package:base':
 {: .output}
 
 
-## Taking a quick look at data frames
+### Taking a quick look at data frames
 
 Similar to `str()`, which comes built into R, `glimpse()` is a `dplyr` function that (as the name suggests) gives a glimpse of the data frame.
 
@@ -190,7 +200,7 @@ $ gt_GT_alleles <chr> "G", "T", "T", "CTTTTTTTT", "CCGCGC", "T", "A", "A", "AC�
 
 In the above output, we can already gather some information about `variants`, such as the number of rows and columns, column names, type of vector in the columns, and the first few entries of each column. Although what we see is similar to outputs of `str()`, this method gives a cleaner visual output.
 
-## Selecting columns and filtering rows
+### Selecting columns and filtering rows
 
 To select columns of a data frame, use `select()`. The first argument to this function is the data frame (`variants`), and the subsequent arguments are the columns to keep.
 
@@ -596,7 +606,7 @@ filter(variants, sample_id == "SRR2584863", (INDEL | QUAL >= 100))
 {: .challenge}
 
 
-## Pipes
+### Pipes
 
 But what if you wanted to select and filter? We can do this with pipes. Pipes, are a fairly recent addition to R. Pipes let you
 take the output of one function and send it directly to the next, which is
@@ -781,7 +791,7 @@ SRR2584863_variants %>% slice(10:25)
 > {: .solution}
 {: .challenge}
 
-## Mutate
+### Mutate
 
 Frequently you'll want to create new columns based on the values in existing
 columns, for example to do unit conversions or find the ratio of values in two
@@ -869,7 +879,7 @@ variants %>%
 > {: .solution}
 {: .challenge}
 
-## group_by() and  summarize() functions
+### group_by() and  summarize() functions
 
 Many data analysis tasks can be approached using the "split-apply-combine"
 paradigm: split the data into groups, apply some analysis to each group, and
@@ -1035,9 +1045,9 @@ variants %>%
 ~~~
 {: .output}
 
-## Reshaping data frames
+## tidyr
 
-It can sometimes be useful to transform the "long" tidy format, into the wide format. This transformation can be done with the `pivot_wider()` function provided by the `tidyr` package (also part of the `tidyverse`).
+It can sometimes be useful to transform the "long" tidy format, into the wide format. This transformation can be done with the `pivot_wider()` function provided by the [tidyr](https://tidyr.tidyverse.org/) package (also part of the `tidyverse`).
 
 
 ~~~
