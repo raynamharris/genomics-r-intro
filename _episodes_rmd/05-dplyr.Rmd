@@ -28,12 +28,13 @@ knitr_fig_path("05-")
 
 ## Setup
 
-Before we begin this lesson, be sure you have read the variant data.
+Before we begin this lesson, be sure you have read the variant data. To help with formatting, I'm going to use the `read_csv()` function from `readr` insteead of intead of `read.csv()` from `base`. The `readr` packages imports data frames as **tibbles** instead of **dataframes**. 
 
 ```{r, include = TRUE, echo = T, eval = TRUE, purl = FALSE, message = F, warning = F}
 # read data
-variants <- read.csv("../data/combined_tidy_vcf.csv")
-head(variants)[,1:5]
+library(readr)
+variants <- read_csv("../data/combined_tidy_vcf.csv")
+head(variants)
 ```
 
 ## Why dplyr?
