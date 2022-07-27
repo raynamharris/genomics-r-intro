@@ -251,9 +251,6 @@ SRR2584863_variants
 
 Similar to `head()` and `tail()` functions, we can also look at the first or last six rows using tidyverse function `slice()`. Slice is a more versatile function that allows users to specify a range to view:
 
-```{r}
-SRR2584863_variants %>% slice(1:6)
-```
 
 ```{r}
 SRR2584863_variants %>% slice(10:25)
@@ -267,12 +264,14 @@ SRR2584863_variants %>% slice(10:25)
 > Shwoing only 5th through 11th rows of columns `REF`, `ALT`, and `POS`.
 >
 >> ## Solution
+>> 
 >> ```{r}
 >>  variants %>%
 >>  filter(sample_id == "SRR2584863" & DP >= 10) %>%
 >>  slice(5:11) %>%
 >>  select(REF, ALT, POS)
 >> ```
+>> 
 > {: .solution}
 {: .challenge}
 
@@ -292,10 +291,13 @@ Probability = 1- 10 ^ -(QUAL/10)
 
 Let's add a column (`POLPROB`) to our `variants` data frame that shows
 the probability of a polymorphism at that site given the data.
+We can use the arrange select functions to reorder the rows and columns. 
 
 ```{r, purl = FALSE}
 variants %>%
-  mutate(POLPROB = 1 - (10 ^ -(QUAL/10)))
+  mutate(POLPROB = 1 - (10 ^ -(QUAL/10))) %>%
+  arrange(POLPROB) %>%
+  select(POLPROB, everything())
 ```
 
 > ## Exercise
@@ -308,6 +310,7 @@ variants %>%
 >> ```{r}
 >> variants %>%
 >>  mutate(POLPROB = 1 - 10 ^ -(QUAL/10)) %>%
+>>  arrange(POLPROB) %>%
 >>  select(sample_id, POS, QUAL, POLPROB)
 >> ```
 >>
@@ -430,6 +433,40 @@ The opposite operation of `pivot_wider()` is taken care by `pivot_longer()`. We 
 variants_wide %>%
   pivot_longer(-CHROM, names_to = "sample_id", values_to = "mean_DP")
 ```
+
+Let's revist the summary stats section and make an object called "results_wide". It's good practice to `ungroup()` that data before peforming downstream manipulations or analyses.
+
+```{r results_wide}
+results_wide <- variants %>%
+  group_by(sample_id) %>%
+  summarize(
+    mean_DP = mean(DP),
+    median_DP = median(DP),
+    min_DP = min(DP),
+    max_DP = max(DP)) %>%
+  ungroup()  
+results_wide    
+```
+
+Let's use pivot_longer to widen it. We want the **sample_id** column to remain as is, so we add a minus sign to specify that this column will not be pivoted. Then we specify the new column names with **names_to** and **values_to**.
+
+```{r results_long}
+
+results_long <- results_wide %>% 
+  pivot_longer(-sample_id, names_to = "stat", values_to = "value")
+results_long
+
+```
+
+Returning to a wide format is very similar. 
+
+```{r backtowide}
+
+results_long %>%
+  pivot_wider(names_from = "stat", values_from = "value")
+  
+```
+
 
 ## Resources
 

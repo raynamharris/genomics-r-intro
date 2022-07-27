@@ -716,26 +716,6 @@ SRR2584863_variants
 Similar to `head()` and `tail()` functions, we can also look at the first or last six rows using tidyverse function `slice()`. Slice is a more versatile function that allows users to specify a range to view:
 
 
-~~~
-SRR2584863_variants %>% slice(1:6)
-~~~
-{: .language-r}
-
-
-
-~~~
-# A tibble: 6 × 3
-  REF      ALT          DP
-  <chr>    <chr>     <dbl>
-1 T        G             4
-2 G        T             6
-3 G        T            10
-4 CTTTTTTT CTTTTTTTT    12
-5 CCGC     CCGCGC       10
-6 C        T            10
-~~~
-{: .output}
-
 
 ~~~
 SRR2584863_variants %>% slice(10:25)
@@ -776,6 +756,7 @@ SRR2584863_variants %>% slice(10:25)
 >
 >> ## Solution
 >> 
+>> 
 >> ~~~
 >>  variants %>%
 >>  filter(sample_id == "SRR2584863" & DP >= 10) %>%
@@ -799,6 +780,7 @@ SRR2584863_variants %>% slice(10:25)
 >> 7 C     A     3401754
 >> ~~~
 >> {: .output}
+>> 
 > {: .solution}
 {: .challenge}
 
@@ -818,11 +800,14 @@ Probability = 1- 10 ^ -(QUAL/10)
 
 Let's add a column (`POLPROB`) to our `variants` data frame that shows
 the probability of a polymorphism at that site given the data.
+We can use the arrange select functions to reorder the rows and columns. 
 
 
 ~~~
 variants %>%
-  mutate(POLPROB = 1 - (10 ^ -(QUAL/10)))
+  mutate(POLPROB = 1 - (10 ^ -(QUAL/10))) %>%
+  arrange(POLPROB) %>%
+  select(POLPROB, everything())
 ~~~
 {: .language-r}
 
@@ -830,23 +815,22 @@ variants %>%
 
 ~~~
 # A tibble: 801 × 30
-   sample…¹ CHROM    POS ID    REF   ALT    QUAL FILTER INDEL   IDV    IMF    DP
-   <chr>    <chr>  <dbl> <lgl> <chr> <chr> <dbl> <lgl>  <lgl> <dbl>  <dbl> <dbl>
- 1 SRR2584… CP00… 9.97e3 NA    T     G        91 NA     FALSE    NA NA         4
- 2 SRR2584… CP00… 2.63e5 NA    G     T        85 NA     FALSE    NA NA         6
- 3 SRR2584… CP00… 2.82e5 NA    G     T       217 NA     FALSE    NA NA        10
- 4 SRR2584… CP00… 4.33e5 NA    CTTT… CTTT…    64 NA     TRUE     12  1        12
- 5 SRR2584… CP00… 4.74e5 NA    CCGC  CCGC…   228 NA     TRUE      9  0.9      10
- 6 SRR2584… CP00… 6.49e5 NA    C     T       210 NA     FALSE    NA NA        10
- 7 SRR2584… CP00… 1.33e6 NA    C     A       178 NA     FALSE    NA NA         8
- 8 SRR2584… CP00… 1.73e6 NA    G     A       225 NA     FALSE    NA NA        11
- 9 SRR2584… CP00… 2.10e6 NA    ACAG… ACAG…    56 NA     TRUE      2  0.667     3
-10 SRR2584… CP00… 2.33e6 NA    AT    ATT     167 NA     TRUE      7  1         7
-# … with 791 more rows, 18 more variables: VDB <dbl>, RPB <dbl>, MQB <dbl>,
-#   BQB <dbl>, MQSB <dbl>, SGB <dbl>, MQ0F <dbl>, ICB <lgl>, HOB <lgl>,
-#   AC <dbl>, AN <dbl>, DP4 <chr>, MQ <dbl>, Indiv <chr>, gt_PL <dbl>,
-#   gt_GT <dbl>, gt_GT_alleles <chr>, POLPROB <dbl>, and abbreviated variable
-#   name ¹​sample_id
+   POLPROB sample_id  CHROM       POS ID    REF   ALT    QUAL FILTER INDEL   IDV
+     <dbl> <chr>      <chr>     <dbl> <lgl> <chr> <chr> <dbl> <lgl>  <lgl> <dbl>
+ 1   0.636 SRR2584866 CP00081… 2.06e6 NA    A     G      4.38 NA     FALSE    NA
+ 2   0.680 SRR2584866 CP00081… 3.54e6 NA    G     A      4.95 NA     FALSE    NA
+ 3   0.687 SRR2584866 CP00081… 3.55e6 NA    A     C      5.05 NA     FALSE    NA
+ 4   0.687 SRR2584866 CP00081… 3.55e6 NA    C     T      5.05 NA     FALSE    NA
+ 5   0.725 SRR2584866 CP00081… 6.35e5 NA    A     G      5.61 NA     FALSE    NA
+ 6   0.734 SRR2584866 CP00081… 2.06e6 NA    A     G      5.76 NA     FALSE    NA
+ 7   0.820 SRR2584866 CP00081… 1.42e6 NA    GCCC… GCCC…  7.45 NA     TRUE      8
+ 8   0.838 SRR2584866 CP00081… 9.43e5 NA    ACCC… ACCC…  7.91 NA     TRUE      6
+ 9   0.846 SRR2584866 CP00081… 2.06e6 NA    G     A      8.14 NA     FALSE    NA
+10   0.855 SRR2584866 CP00081… 1.75e6 NA    TGGG… TGGG…  8.38 NA     TRUE      9
+# … with 791 more rows, and 19 more variables: IMF <dbl>, DP <dbl>, VDB <dbl>,
+#   RPB <dbl>, MQB <dbl>, BQB <dbl>, MQSB <dbl>, SGB <dbl>, MQ0F <dbl>,
+#   ICB <lgl>, HOB <lgl>, AC <dbl>, AN <dbl>, DP4 <chr>, MQ <dbl>, Indiv <chr>,
+#   gt_PL <dbl>, gt_GT <dbl>, gt_GT_alleles <chr>
 # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
 ~~~
 {: .output}
@@ -862,6 +846,7 @@ variants %>%
 >> ~~~
 >> variants %>%
 >>  mutate(POLPROB = 1 - 10 ^ -(QUAL/10)) %>%
+>>  arrange(POLPROB) %>%
 >>  select(sample_id, POS, QUAL, POLPROB)
 >> ~~~
 >> {: .language-r}
@@ -872,16 +857,16 @@ variants %>%
 >> # A tibble: 801 × 4
 >>    sample_id      POS  QUAL POLPROB
 >>    <chr>        <dbl> <dbl>   <dbl>
->>  1 SRR2584863    9972    91    1.00
->>  2 SRR2584863  263235    85    1.00
->>  3 SRR2584863  281923   217    1   
->>  4 SRR2584863  433359    64    1.00
->>  5 SRR2584863  473901   228    1   
->>  6 SRR2584863  648692   210    1   
->>  7 SRR2584863 1331794   178    1   
->>  8 SRR2584863 1733343   225    1   
->>  9 SRR2584863 2103887    56    1.00
->> 10 SRR2584863 2333538   167    1   
+>>  1 SRR2584866 2055833  4.38   0.636
+>>  2 SRR2584866 3538863  4.95   0.680
+>>  3 SRR2584866 3550069  5.05   0.687
+>>  4 SRR2584866 3550071  5.05   0.687
+>>  5 SRR2584866  634603  5.61   0.725
+>>  6 SRR2584866 2055692  5.76   0.734
+>>  7 SRR2584866 1424975  7.45   0.820
+>>  8 SRR2584866  942702  7.91   0.838
+>>  9 SRR2584866 2055662  8.14   0.846
+>> 10 SRR2584866 1746738  8.38   0.855
 >> # … with 791 more rows
 >> # ℹ Use `print(n = ...)` to see more rows
 >> ~~~
@@ -1151,6 +1136,87 @@ variants_wide %>%
 3 CP000819.1 SRR2589044     9.3
 ~~~
 {: .output}
+
+Let's revist the summary stats section and make an object called "results_wide". It's good practice to `ungroup()` that data before peforming downstream manipulations or analyses.
+
+
+~~~
+results_wide <- variants %>%
+  group_by(sample_id) %>%
+  summarize(
+    mean_DP = mean(DP),
+    median_DP = median(DP),
+    min_DP = min(DP),
+    max_DP = max(DP)) %>%
+  ungroup()  
+results_wide    
+~~~
+{: .language-r}
+
+
+
+~~~
+# A tibble: 3 × 5
+  sample_id  mean_DP median_DP min_DP max_DP
+  <chr>        <dbl>     <dbl>  <dbl>  <dbl>
+1 SRR2584863    10.4      10        2     20
+2 SRR2584866    10.6      10        2     79
+3 SRR2589044     9.3       9.5      3     16
+~~~
+{: .output}
+
+Let's use pivot_longer to widen it. We want the **sample_id** column to remain as is, so we add a minus sign to specify that this column will not be pivoted. Then we specify the new column names with **names_to** and **values_to**.
+
+
+~~~
+results_long <- results_wide %>% 
+  pivot_longer(-sample_id, names_to = "stat", values_to = "value")
+results_long
+~~~
+{: .language-r}
+
+
+
+~~~
+# A tibble: 12 × 3
+   sample_id  stat      value
+   <chr>      <chr>     <dbl>
+ 1 SRR2584863 mean_DP    10.4
+ 2 SRR2584863 median_DP  10  
+ 3 SRR2584863 min_DP      2  
+ 4 SRR2584863 max_DP     20  
+ 5 SRR2584866 mean_DP    10.6
+ 6 SRR2584866 median_DP  10  
+ 7 SRR2584866 min_DP      2  
+ 8 SRR2584866 max_DP     79  
+ 9 SRR2589044 mean_DP     9.3
+10 SRR2589044 median_DP   9.5
+11 SRR2589044 min_DP      3  
+12 SRR2589044 max_DP     16  
+~~~
+{: .output}
+
+Returning to a wide format is very similar. 
+
+
+~~~
+results_long %>%
+  pivot_wider(names_from = "stat", values_from = "value")
+~~~
+{: .language-r}
+
+
+
+~~~
+# A tibble: 3 × 5
+  sample_id  mean_DP median_DP min_DP max_DP
+  <chr>        <dbl>     <dbl>  <dbl>  <dbl>
+1 SRR2584863    10.4      10        2     20
+2 SRR2584866    10.6      10        2     79
+3 SRR2589044     9.3       9.5      3     16
+~~~
+{: .output}
+
 
 ## Resources
 
