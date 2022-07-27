@@ -83,6 +83,16 @@ memory. The database connections essentially remove that limitation in that you
 can have a database that is over 100s of GB, conduct queries on it directly and pull
 back just what you need for analysis in R.
 
+Let's install (if necessary) and load the `dplyr` package.
+
+```{r, echo = TRUE, eval = TRUE, purl = FALSE}
+
+#install.packages("dplyr")
+library(dplyr)
+
+```
+
+
 ## Taking a quick look at data frames
 
 Similar to `str()`, which comes built into R, `glimpse()` is a `dplyr` function that (as the name suggests) gives a glimpse of the data frame.
