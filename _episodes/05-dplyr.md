@@ -40,7 +40,7 @@ Install the complete tidyverse or the packges separately. This lesson focuses on
 ## readr 
 
 <center>
-<img src="https://d33wubrfki0l68.cloudfront.net/c1c91484f898fe9d7d90a570900f1d5cd703fe2e/d7df4/css/images/hex/readr.png" style="width: 100px;"/>
+<img src="https://d33wubrfki0l68.cloudfront.net/c1c91484f898fe9d7d90a570900f1d5cd703fe2e/d7df4/css/images/hex/readr.png" style="width: 200px;"/>
 </center>
 
 
@@ -1044,7 +1044,7 @@ variants %>%
 ## tidyr
 
 <center>
-<img src="https://d33wubrfki0l68.cloudfront.net/476fa4025501dcec05be08248b32d390dd2337d5/574c6/css/images/hex/tidyr.png" style="width: 300px;"/>
+<img src="https://d33wubrfki0l68.cloudfront.net/476fa4025501dcec05be08248b32d390dd2337d5/574c6/css/images/hex/tidyr.png" style="width: 200px;"/>
 </center>
 
 
