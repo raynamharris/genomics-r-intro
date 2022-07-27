@@ -1,8 +1,8 @@
 ---
-title: "Data Wrangling and Analyses with Tidyverse"
+title: "Data Wrangling and Organization with the Tidyverse"
 teaching: 40
 exercises: 15
-questions: How can I manipulate data frames without repeating myself?
+questions: How can I manipulate data frames effeciently and reproducibly?
 objectives:
 - Describe what the `readr` package in R is used for.
 - Apply common `dplyr` and `tidyr` functions to manipulate data in R.
