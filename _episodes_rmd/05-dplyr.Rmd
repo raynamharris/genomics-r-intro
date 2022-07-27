@@ -26,15 +26,17 @@ source("../bin/chunk-options.R")
 knitr_fig_path("05-")
 ```
 
-```{r, include = TRUE, echo = TRUE, eval = TRUE, purl = FALSE}
-# load library
+## Setup
 
-library(tidyverse)
+Before we begin this lesson, be sure you have read the variant data.
 
+```{r, include = TRUE, echo = T, eval = TRUE, purl = FALSE, message = F, warning = F}
 # read data
-variants <- read_csv("../data/combined_tidy_vcf.csv")
-str(variants)
+variants <- read.csv("../data/combined_tidy_vcf.csv")
+head(variants)[,1:5]
 ```
+
+## Why dplyr?
 
 Bracket subsetting is handy, but it can be cumbersome and difficult to read, especially for complicated operations.
 
@@ -81,7 +83,7 @@ memory. The database connections essentially remove that limitation in that you
 can have a database that is over 100s of GB, conduct queries on it directly and pull
 back just what you need for analysis in R.
 
-### Taking a quick look at data frames
+## Taking a quick look at data frames
 
 Similar to `str()`, which comes built into R, `glimpse()` is a `dplyr` function that (as the name suggests) gives a glimpse of the data frame.
 
@@ -91,7 +93,7 @@ glimpse(variants)
 
 In the above output, we can already gather some information about `variants`, such as the number of rows and columns, column names, type of vector in the columns, and the first few entries of each column. Although what we see is similar to outputs of `str()`, this method gives a cleaner visual output.
 
-### Selecting columns and filtering rows
+## Selecting columns and filtering rows
 
 To select columns of a data frame, use `select()`. The first argument to this function is the data frame (`variants`), and the subsequent arguments are the columns to keep.
 
@@ -169,7 +171,7 @@ filter(variants, sample_id == "SRR2584863", (INDEL | QUAL >= 100))
 {: .challenge}
 
 
-### Pipes
+## Pipes
 
 But what if you wanted to select and filter? We can do this with pipes. Pipes, are a fairly recent addition to R. Pipes let you
 take the output of one function and send it directly to the next, which is
@@ -244,7 +246,7 @@ SRR2584863_variants %>% slice(10:25)
 > {: .solution}
 {: .challenge}
 
-### Mutate
+## Mutate
 
 Frequently you'll want to create new columns based on the values in existing
 columns, for example to do unit conversions or find the ratio of values in two
@@ -282,7 +284,7 @@ variants %>%
 > {: .solution}
 {: .challenge}
 
-### group_by() and  summarize() functions
+## group_by() and  summarize() functions
 
 Many data analysis tasks can be approached using the "split-apply-combine"
 paradigm: split the data into groups, apply some analysis to each group, and
@@ -360,7 +362,7 @@ variants %>%
     max_DP = max(DP))
 ```
 
-### Reshaping data frames
+## Reshaping data frames
 
 It can sometimes be useful to transform the "long" tidy format, into the wide format. This transformation can be done with the `pivot_wider()` function provided by the `tidyr` package (also part of the `tidyverse`).
 
@@ -380,7 +382,8 @@ The opposite operation of `pivot_wider()` is taken care by `pivot_longer()`. We 
 variants_wide %>%
   pivot_longer(-CHROM, names_to = "sample_id", values_to = "mean_DP")
 ```
-### Resources
+
+## Resources
 
 * [Handy dplyr cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf)
 
