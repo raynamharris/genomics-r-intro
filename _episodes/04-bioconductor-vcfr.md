@@ -30,16 +30,9 @@ In some cases, you may want to use a specialized package that is not hosted on [
 
 Since access to the [Bioconductor](https://bioconductor.org/) repository is not built in to base R 'out of the box', there are a couple steps needed to install packages from this alternative source. We will work through the steps (only 2!) to install a package to help with the VCF analysis we are working on, but you can use the same approach to install any of the many thousands of available packages.
 
-<figure>
 <center>
-<img src="../fig/bioconductor_website_screenshot.png" style="width:90%">
-<figcaption><i>Screenshot of Bioconductor homepage.<p></p></i></figcaption>
+<img src="../fig/bioconductor_website_screenshot.png"/>
 </center>
-</figure>
-
-
-![screenshot of bioconductor search](../fig/bioconductor_website_screenshot.png)
-
 
 
 
