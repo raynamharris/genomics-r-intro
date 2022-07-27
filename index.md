@@ -64,5 +64,6 @@ exercises in class, re-do them on your own, and then work on your own problems.
 > * [R for Data Science Code](https://github.com/hadley/r4ds/)
 > * [Bioconductor Home](https://www.bioconductor.org/)
 > * [Bioconductor Package Search](https://www.bioconductor.org/packages/release/BiocViews.html#___Software)
-> * [![Launch Rstudio Binder](http://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/raynamharris/tutorials/master?urlpath=rstudio)
 {: .callout}
+
+If you don't have R installed, you can click this [![Binder](http://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/raynamharris/tutorials/master?urlpath=rstudio) button to start RStudio in a browser window.
