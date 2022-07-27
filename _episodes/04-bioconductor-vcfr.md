@@ -107,11 +107,21 @@ vcf files in R.
 
 > ## Challenge
 >
-> Add code chunks to
+> Can the following packages be installed with CRAN or Bioconductor?
 >
-> - Install the `BiocManager` package
-> - Use that package's `install()` function to install `vcfR`
-> - Browse the Bioconductor website to find a second package, and install it
+> 1. ggplot2
+> 2. tidyr
+> 3. DESeq2
+> 4. limma
+> 5. recount3
+>   
+>> ## Solution
+>> 
+>> 1. CRAN
+>> 2. CRAN
+>> 3. Bioconductor
+>> 4. Bioconductor
+>> 5. Bioconductor
 {: .challenge}
 
 ## Resources
