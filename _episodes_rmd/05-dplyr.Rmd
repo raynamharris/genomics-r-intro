@@ -377,12 +377,25 @@ variants %>%
 
 It can sometimes be useful to transform the "long" tidy format, into the wide format. This transformation can be done with the `pivot_wider()` function provided by the `tidyr` package (also part of the `tidyverse`).
 
+```{r}
+#install.packages("tidyr")
+library(tidyr)
+```
+
+Let's first make a smaller data frame that we can pivot.
+
+```{r}
+variants_sum <- variants %>%
+  group_by(sample_id, CHROM) %>%
+  summarize(mean_DP = mean(DP)) 
+variants_sum
+```
+
+
 `pivot_wider()` takes a data frame as the first argument, and two arguments: the column name that will become the columns  and the column name that will become the cells in the wide data.
 
 ```{r}
-variants_wide <- variants %>%
-  group_by(sample_id, CHROM) %>%
-  summarize(mean_DP = mean(DP)) %>%
+variants_wide <- variants_sum %>%
   pivot_wider(names_from = sample_id, values_from = mean_DP)
 variants_wide
 ```
