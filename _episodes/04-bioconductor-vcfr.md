@@ -3,7 +3,7 @@
 # Instead, please edit 04-bioconductor-vcfr.md in _episodes_rmd/
 title: Using packages from Bioconductor
 teaching: 10
-exercises: 3
+exercises: 5
 questions:
 - "How do I use packages from the Bioconductor repository?"
 objectives:
