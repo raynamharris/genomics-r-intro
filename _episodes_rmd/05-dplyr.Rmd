@@ -470,6 +470,6 @@ results_long %>%
 
 ## Resources
 
-* [Handy dplyr cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf)
-
-* [Much of this lesson was copied or adapted from Jeff Hollister's materials](http://usepa.github.io/introR/2015/01/14/03-Clean/)
+* [Data import with readr, readxl, and googlesheets4 cheatsheet](https://github.com/rstudio/cheatsheets/blob/main/data-import.pdf)
+* [Data transformation with dplyr cheatsheet](https://github.com/rstudio/cheatsheets/blob/main/data-transformation.pdf)
+* [Data tidying with tidyr cheatsheet](https://github.com/rstudio/cheatsheets/blob/main/tidyr.pdf)
